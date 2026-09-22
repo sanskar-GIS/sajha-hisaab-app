@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sajha Hisaab — Jewelry Business</title>
+<title>Jewelry Business — Partner Ledger</title>
 <meta name="theme-color" content="#0f1220">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-512.png">
@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Sajha Hisaab">
+<meta name="apple-mobile-web-app-title" content="Jewelry Ledger">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -143,21 +143,21 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
 <section id="screen-login" class="screen active">
   <div class="login-wrap">
     <div class="logo">💍</div>
-    <h1>Sajha Hisaab</h1>
-    <p class="sub">Jewelry Business • Partner Ledger</p>
+    <h1>Jewelry Business</h1>
+    <p class="sub">Sanskar &amp; Priyanshu • Partner Ledger</p>
     <div class="pin-dots" id="pin-dots">
       <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
     </div>
     <div class="pin-pad" id="pin-pad"></div>
-    <p class="hint">Neeche wale <b>buttons dabayein</b> ya keyboard se type karein:<br>aapka PIN <b>1111</b> • dost ka PIN <b>2222</b> (Settings me badal sakte hain)</p>
+    <p class="hint">Tap the buttons below or type on your keyboard:<br><b>Sanskar</b> PIN <b>1111</b> • <b>Priyanshu</b> PIN <b>2222</b> (changeable in Settings)</p>
   </div>
 </section>
 
 <div id="app" class="hidden">
   <header class="topbar">
     <div class="topbar-left">
-      <h2 id="biz-name">Sajha Hisaab</h2>
-      <p class="conn offline" id="conn-status"><span>● connect ho raha…</span></p>
+      <h2 id="biz-name">Jewelry Business</h2>
+      <p class="conn offline" id="conn-status"><span>● connecting…</span></p>
     </div>
     <button class="ghost-btn" id="logout-btn">Logout</button>
   </header>
@@ -166,43 +166,43 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
     <section id="screen-home" class="screen">
       <div class="card due-card" id="due-card"></div>
       <div class="grid3">
-        <div class="card stat"><span class="stat-label">Total Kamai</span><span class="stat-val green" id="tot-income">₹0</span></div>
-        <div class="card stat"><span class="stat-label">Total Kharcha</span><span class="stat-val red" id="tot-expense">₹0</span></div>
+        <div class="card stat"><span class="stat-label">Total Income</span><span class="stat-val green" id="tot-income">₹0</span></div>
+        <div class="card stat"><span class="stat-label">Total Expense</span><span class="stat-val red" id="tot-expense">₹0</span></div>
         <div class="card stat"><span class="stat-label">Profit</span><span class="stat-val gold" id="tot-profit">₹0</span></div>
       </div>
-      <h3 class="sec-title">Haal ki Entries</h3>
+      <h3 class="sec-title">Recent Entries</h3>
       <div id="recent-list" class="txn-list"></div>
     </section>
 
     <section id="screen-add" class="screen">
-      <h3 class="sec-title">Nayi Entry</h3>
+      <h3 class="sec-title">New Entry</h3>
       <div class="seg" id="type-seg">
-        <button type="button" class="seg-btn active" data-type="expense">💸 Kharcha</button>
-        <button type="button" class="seg-btn" data-type="income">💰 Kamai</button>
+        <button type="button" class="seg-btn active" data-type="expense">💸 Expense</button>
+        <button type="button" class="seg-btn" data-type="income">💰 Income</button>
       </div>
       <div class="card form">
-        <label>Rashi (₹)</label>
+        <label>Amount (₹)</label>
         <input id="f-amount" type="number" inputmode="decimal" min="1" step="0.01" placeholder="e.g. 200">
         <label>Category</label>
         <select id="f-category"></select>
-        <label>Kisko / kahan se? (jisne paisa diya ya liya)</label>
+        <label>Paid by / received by (who gave or got the money)</label>
         <div class="seg" id="paidby-seg"></div>
         <label>Date</label>
         <input id="f-date" type="date">
-        <label>Kya tha? (title)</label>
-        <input id="f-title" type="text" maxlength="120" placeholder="e.g. domain kharida, silver chain stock li">
+        <label>What was it? (title)</label>
+        <input id="f-title" type="text" maxlength="120" placeholder="e.g. bought domain, silver chain stock">
         <label>Extra note (optional)</label>
-        <textarea id="f-note" rows="2" maxlength="300" placeholder="koi extra khabar…"></textarea>
-        <button class="primary-btn" id="save-txn">💾 Entry Save Karein</button>
+        <textarea id="f-note" rows="2" maxlength="300" placeholder="any extra details…"></textarea>
+        <button class="primary-btn" id="save-txn">💾 Save Entry</button>
       </div>
     </section>
 
     <section id="screen-ledger" class="screen">
-      <h3 class="sec-title">Poora Hisaab</h3>
+      <h3 class="sec-title">Full Ledger</h3>
       <div class="chips" id="filter-chips">
-        <button class="chip active" data-f="all">Sab</button>
-        <button class="chip" data-f="expense">Kharcha</button>
-        <button class="chip" data-f="income">Kamai</button>
+        <button class="chip active" data-f="all">All</button>
+        <button class="chip" data-f="expense">Expense</button>
+        <button class="chip" data-f="income">Income</button>
         <button class="chip" data-f="settle">Settle</button>
       </div>
       <div id="ledger-list" class="txn-list"></div>
@@ -212,29 +212,29 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
       <h3 class="sec-title">Settlement</h3>
       <div class="card" id="settle-summary"></div>
       <div class="card" id="settle-detail"></div>
-      <button class="primary-btn" id="settle-btn">⚖️ Settle Mark Karein</button>
-      <p class="hint" style="margin-top:14px">Settle karne ka matlab: paisa transfer ho chuka. Yeh entry dono phones par aayegi aur hisaab barabar ho jayega.</p>
+      <button class="primary-btn" id="settle-btn">⚖️ Mark as Settled</button>
+      <p class="hint" style="margin-top:14px">Marking as settled means the money has already been transferred. It will appear on both phones and the balance becomes even.</p>
     </section>
 
     <section id="screen-settings" class="screen">
       <h3 class="sec-title">Settings</h3>
       <div class="card form">
-        <label>Business ka naam</label>
+        <label>Business name</label>
         <input id="s-bizname" type="text" maxlength="60">
-        <label>Aapka naam</label>
+        <label>Your name</label>
         <input id="s-mename" type="text" maxlength="30">
-        <label>Aapka hissa (%)</label>
+        <label>Your share (%)</label>
         <input id="s-meshare" type="number" min="0" max="100" step="1">
         <p class="hint" id="s-other-share"></p>
-        <label>Aapka naya PIN (4–8 number, khaali chhode to wahi rahega)</label>
+        <label>New PIN (4–8 digits — leave blank to keep the current one)</label>
         <input id="s-mypin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="••••">
-        <button class="primary-btn" id="save-settings">💾 Settings Save Karein</button>
+        <button class="primary-btn" id="save-settings">💾 Save Settings</button>
       </div>
       <div class="card">
         <p class="hint" style="margin:0">
-          📱 Dono phones par yahi link kholein aur apni PIN se login karein.<br>
-          📲 Jo bhi entry koi daale, 1-2 second me dusre phone par aayegi (live sync).<br>
-          🏠 "Add to Home Screen" kar ke yeh app ki tarah install ho jayega.
+          📱 Open this same link on both phones and log in with your PIN.<br>
+          📲 Any entry added by either of you shows up on the other phone within 1–2 seconds (live sync).<br>
+          🏠 Use "Add to Home Screen" to install it like an app.
         </p>
       </div>
     </section>
@@ -242,7 +242,7 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
 
   <nav class="bottom-nav">
     <button class="nav-btn" data-nav="home">🏠<span>Home</span></button>
-    <button class="nav-btn" data-nav="ledger">📒<span>Hisaab</span></button>
+    <button class="nav-btn" data-nav="ledger">📒<span>Ledger</span></button>
     <button class="nav-btn fab" data-nav="add"><span class="fab-plus">＋</span></button>
     <button class="nav-btn" data-nav="settle">⚖️<span>Settle</span></button>
     <button class="nav-btn" data-nav="settings">⚙️<span>Settings</span></button>
@@ -286,6 +286,33 @@ function fmtDate(d) {
 }
 function partner(id) { return state ? state.partners.find(p => p.id === id) : null; }
 
+/* translate server error messages (Hinglish -> English) */
+function trError(msg) {
+  const MAP = [
+    ["Galat PIN", "Wrong PIN, please try again"],
+    ["PIN 4-8 numbers ka hona chahiye", "PIN must be 4-8 digits"],
+    ["Login zaroori hai", "Login required"],
+    ["Session expire ho gayi", "Session expired, please log in again"],
+    ["Sahi rashi / category / partner chunein", "Please enter a valid amount, category and partner"],
+    ["Balance already barabar hai", "Balance is already even"],
+    ["Entry save nahi hui", "Entry could not be saved"],
+    ["Delete nahi hua", "Delete failed"],
+    ["Settle nahi hua", "Settlement failed"],
+    ["Naam save nahi hua", "Could not save the name"],
+    ["Settings save nahi hui", "Could not save settings"],
+    ["PIN change nahi hua", "PIN could not be changed"],
+    ["Ye PIN kisi aur partner ka already hai", "This PIN is already used by the other partner"],
+  ];
+  if (!msg) return "Something went wrong";
+  for (const [h, e] of MAP) {
+    if (msg.startsWith(h)) {
+      const rest = msg.slice(h.length).replace(/^[:\s]+/, "").trim();
+      return rest ? e + " — " + rest : e;
+    }
+  }
+  return msg;
+}
+
 async function api(action, body) {
   const res = await fetch(API + '?action=' + action, {
     method: body ? 'POST' : 'GET',
@@ -297,7 +324,7 @@ async function api(action, body) {
   });
   let j = {};
   try { j = await res.json(); } catch {}
-  if (!res.ok) throw new Error(j.error || 'Kuch galat ho gaya (' + res.status + ')');
+  if (!res.ok) throw new Error(trError(j.error) || 'Request failed (' + res.status + ')');
   return j;
 }
 
@@ -320,7 +347,7 @@ function show(screen) {
 function setConn(on) {
   const el = $('#conn-status');
   el.className = 'conn ' + (on ? 'online' : 'offline');
-  el.innerHTML = on ? '<span>● Live — partner se connected</span>' : '<span>● Offline — dobara try ho raha hai</span>';
+  el.innerHTML = on ? '<span>● Live — connected with partner</span>' : '<span>● Offline — retrying…</span>';
 }
 
 /* ---------------- login / PIN pad ---------------- */
@@ -395,7 +422,7 @@ function applyState(s) {
     const t = state.transactions[0];
     if (t && t.createdBy && t.createdBy !== meId) {
       const who = partner(t.createdBy)?.name || 'Partner';
-      const kind = t.type === 'income' ? 'kamai 💰' : t.type === 'settle' ? 'settlement ⚖️' : 'kharcha 💸';
+      const kind = t.type === 'income' ? 'income 💰' : t.type === 'settle' ? 'settlement ⚖️' : 'expense 💸';
       toast(`📲 ${who}: ${kind} ${fmt(t.amount)} — ${t.title || t.category}`, 'sync');
     }
   }
@@ -408,15 +435,15 @@ function renderHome() {
   const other = state.partners.find(p => p.id !== meId);
   const card = $('#due-card');
   if (Math.abs(bal) < 0.005) {
-    card.innerHTML = '<div class="ok">🎉 Sab Hisaab Barabar Hai</div><div class="small">Abhi koi paisa dene-lene ka nahi</div>';
+    card.innerHTML = '<div class="ok">🎉 All Clear</div><div class="small">No balance due — nothing to pay or receive</div>';
   } else if (bal < 0) {
-    card.innerHTML = `<div class="who">${other?.name || 'Partner'} ko aapko dena hai</div>
+    card.innerHTML = `<div class="who">You need to pay ${other?.name || 'partner'}</div>
       <div class="amt pay">${fmt(-bal)}</div>
-      <div class="small">dono phones par live update hota hai</div>`;
+      <div class="small">live syncs on both phones</div>`;
   } else {
-    card.innerHTML = `<div class="who">${other?.name || 'Partner'} se aapko milega</div>
+    card.innerHTML = `<div class="who">You will receive from ${other?.name || 'partner'}</div>
       <div class="amt get">${fmt(bal)}</div>
-      <div class="small">dono phones par live update hota hai</div>`;
+      <div class="small">live syncs on both phones</div>`;
   }
   let inc = 0, exp = 0;
   for (const t of state.transactions) {
@@ -428,7 +455,7 @@ function renderHome() {
   $('#tot-profit').textContent = fmt(inc - exp);
   $('#recent-list').innerHTML = state.transactions.length
     ? state.transactions.slice(0, 5).map(txnHtml).join('')
-    : '<div class="empty">Abhi koi entry nahi. Neeche ＋ dabakar pehli entry daalein 🚀</div>';
+    : '<div class="empty">No entries yet. Tap ＋ below to add your first entry 🚀</div>';
   bindDel();
 }
 
@@ -439,7 +466,7 @@ function txnHtml(t) {
   const sign = t.type === 'income' ? '+' : t.type === 'settle' ? '' : '−';
   const cls = t.type === 'income' ? 'green' : t.type === 'settle' ? 'gold' : 'red';
   const title = t.title ? t.title : t.category;
-  const sub = `${who}${me ? ' (aap)' : ''} • ${fmtDate(t.date)}${t.note ? ' • ' + t.note : ''}`;
+  const sub = `${who}${me ? ' (you)' : ''} • ${fmtDate(t.date)}${t.note ? ' • ' + t.note : ''}`;
   return `<div class="txn" data-id="${t.id}">
     <div class="ic">${icon}</div>
     <div class="body"><div class="t1">${esc(title)}</div><div class="t2">${esc(sub)}</div></div>
@@ -451,11 +478,11 @@ function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<'
 function bindDel() {
   $$('.txn .del').forEach(b => b.onclick = async () => {
     const id = b.closest('.txn').dataset.id;
-    if (!confirm('Yeh entry delete karein? (dono phones se hat jayegi)')) return;
+    if (!confirm('Delete this entry? It will be removed from both phones.')) return;
     try {
       await api('txn_delete', { id });
       await refresh();
-      toast('Entry delete ho gayi');
+      toast('Entry deleted');
     } catch (e) { toast(e.message, 'err'); }
   });
 }
@@ -463,7 +490,7 @@ function bindDel() {
 function renderLedger() {
   if (!state) return;
   const list = state.transactions.filter(t => curFilter === 'all' ? true : t.type === curFilter);
-  $('#ledger-list').innerHTML = list.length ? list.map(txnHtml).join('') : '<div class="empty">Is filter me koi entry nahi</div>';
+  $('#ledger-list').innerHTML = list.length ? list.map(txnHtml).join('') : '<div class="empty">No entries in this filter</div>';
   bindDel();
 }
 
@@ -473,23 +500,23 @@ function renderSettle() {
   const rows = state.partners.map(p => {
     const v = b[p.id] || 0;
     const cls = Math.abs(v) < 0.005 ? '' : v > 0 ? 'green' : 'red';
-    const txt = Math.abs(v) < 0.005 ? 'Barabar ✓' : (v > 0 ? `+ ${fmt(v)} milega` : `− ${fmt(-v)} dena hai`);
-    return `<div class="row"><span class="nm">${esc(p.name)}${p.id === meId ? ' (aap)' : ''} • ${p.share}% hissa</span><span class="${cls}">${txt}</span></div>`;
+    const txt = Math.abs(v) < 0.005 ? 'Even ✓' : (v > 0 ? `+ ${fmt(v)} to receive` : `− ${fmt(-v)} to pay`);
+    return `<div class="row"><span class="nm">${esc(p.name)}${p.id === meId ? ' (you)' : ''} • ${p.share}% share</span><span class="${cls}">${txt}</span></div>`;
   }).join('');
   $('#settle-detail').innerHTML = rows;
   const me = b[meId] || 0;
   const other = state.partners.find(p => p.id !== meId);
   const sum = $('#settle-summary'), btn = $('#settle-btn');
   if (Math.abs(me) < 0.005) {
-    sum.innerHTML = '<div class="ok" style="font-size:24px;color:var(--gold2)">🎉 Sab Balance Hai</div><div class="hint" style="margin-top:6px">Abhi koi settlement zaroori nahi</div>';
+    sum.innerHTML = '<div class="ok" style="font-size:24px;color:var(--gold2)">🎉 All Settled Up</div><div class="hint" style="margin-top:6px">No settlement needed right now</div>';
     btn.disabled = true; btn.style.opacity = .45;
   } else {
     btn.disabled = false; btn.style.opacity = 1;
     if (me < 0) {
-      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">${esc(other?.name || 'Partner')} ko aapko dena hai</div>
+      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">You need to pay ${esc(other?.name || 'partner')}</div>
         <div class="amt pay" style="font-size:30px;font-weight:800;color:var(--red)">${fmt(-me)}</div>`;
     } else {
-      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">${esc(other?.name || 'Partner')} se aapko milega</div>
+      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">You will receive from ${esc(other?.name || 'partner')}</div>
         <div class="amt get" style="font-size:30px;font-weight:800;color:var(--green)">${fmt(me)}</div>`;
     }
   }
@@ -503,7 +530,7 @@ function renderSettings() {
   if ($('#s-bizname').value !== state.businessName) $('#s-bizname').value = state.businessName;
   if ($('#s-mename').value !== me.name) $('#s-mename').value = me.name;
   if (String($('#s-meshare').value) !== String(me.share)) $('#s-meshare').value = me.share;
-  $('#s-other-share').textContent = `${other?.name || 'Dusra partner'}: ${other?.share}% hissa (auto adjust hota hai)`;
+  $('#s-other-share').textContent = `${other?.name || 'Other partner'}: ${other?.share}% share (auto-adjusted)`;
   $('#s-mypin').value = '';
 }
 
@@ -513,7 +540,7 @@ function fillAddForm() {
   sel.innerHTML = CATS.map(c => `<option value="${c[0]}">${c[1]} ${c[0]}</option>`).join('');
   const seg = $('#paidby-seg');
   seg.innerHTML = state.partners.map(p =>
-    `<button type="button" class="seg-btn ${p.id === meId ? 'active' : ''}" data-id="${p.id}">${esc(p.name)}${p.id === meId ? ' (aap)' : ''}</button>`
+    `<button type="button" class="seg-btn ${p.id === meId ? 'active' : ''}" data-id="${p.id}">${esc(p.name)}${p.id === meId ? ' (you)' : ''}</button>`
   ).join('');
   $$('#paidby-seg .seg-btn').forEach(b => b.onclick = () => {
     $$('#paidby-seg .seg-btn').forEach(x => x.classList.remove('active'));
@@ -526,7 +553,7 @@ function fillAddForm() {
 async function saveTxn() {
   const amount = parseFloat($('#f-amount').value);
   const paidBy = $('#paidby-seg .seg-btn.active')?.dataset.id || meId;
-  if (!(amount > 0)) { toast('Sahi rashi daalein', 'err'); return; }
+  if (!(amount > 0)) { toast('Enter a valid amount', 'err'); return; }
   try {
     await api('txn_add', {
       type: curType, amount,
@@ -536,18 +563,18 @@ async function saveTxn() {
       note: $('#f-note').value.trim(),
     });
     $('#f-amount').value = ''; $('#f-title').value = ''; $('#f-note').value = '';
-    toast('✓ Entry save hui — partner ke phone par bhi chali gayi 📲');
+    toast('✓ Entry saved — sent to partner\'s phone 📲');
     show('screen-home');
     await refresh();
   } catch (e) { toast(e.message, 'err'); }
 }
 
 async function doSettle() {
-  if (!confirm('Settlement mark karein? (matlab paisa transfer ho chuka)')) return;
+  if (!confirm('Mark as settled? (means the money has already been transferred)')) return;
   try {
     await api('settle', {});
     await refresh();
-    toast('⚖️ Settlement complete — hisaab barabar!');
+    toast('⚖️ Settlement complete — balances are even!');
   } catch (e) { toast(e.message, 'err'); }
 }
 
@@ -559,11 +586,11 @@ async function saveSettings() {
       partners: [{ id: meId, name: $('#s-mename').value.trim(), share, newPin: $('#s-mypin').value.trim() }],
     });
     await refresh();
-    toast('✓ Settings save ho gayi');
+    toast('✓ Settings saved');
   } catch (e) { toast(e.message, 'err'); }
 }
 
-/* ---------------- live sync: har 3 second me check (server se naya data) ---------------- */
+/* ---------------- live sync: check for new data every 3 seconds ---------------- */
 setInterval(() => {
   const appOpen = !$('#app').classList.contains('hidden');
   if (!token() || !appOpen) return;
@@ -587,7 +614,7 @@ $('#save-settings').onclick = saveSettings;
 $$('.nav-btn').forEach(b => b.onclick = () => show({ home: 'screen-home', ledger: 'screen-ledger', add: 'screen-add', settle: 'screen-settle', settings: 'screen-settings' }[b.dataset.nav]));
 $('#logout-btn').onclick = () => { localStorage.removeItem('sh_token'); location.reload(); };
 
-/* pehle se login hai toh seedha andar */
+/* if already logged in before, go straight in */
 if (token()) {
   (async () => {
     try {
@@ -606,6 +633,5 @@ if (token()) {
   })();
 }
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3e9c3475921ad7b',t:'MTc5MDAwMDk3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
