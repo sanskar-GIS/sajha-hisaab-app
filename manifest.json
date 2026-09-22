@@ -1,7 +1,7 @@
 {
-  "name": "Sajha Hisaab — Jewelry Business",
-  "short_name": "Sajha Hisaab",
-  "description": "Dono partners ka shared business ledger — kharcha, kamai, settlement. Live sync.",
+  "name": "Jewelry Business Ledger",
+  "short_name": "Jewelry Ledger",
+  "description": "Shared business ledger for both partners — expenses, income, settlements. Live sync.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
