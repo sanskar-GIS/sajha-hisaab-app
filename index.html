@@ -129,8 +129,8 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
 .nav-btn { background: none; border: none; color: var(--muted); font-size: 20px; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 58px; }
 .nav-btn span { font-size: 10.5px; font-weight: 600; }
 .nav-btn.active { color: var(--gold2); }
-.nav-btn.fab { width: 54px; height: 54px; border-radius: 50%; margin-top: -26px; background: linear-gradient(145deg, var(--gold2), var(--gold)); color: #1a1405; border: 4px solid var(--bg); box-shadow: 0 6px 18px rgba(232,182,76,.4); }
-.fab-plus { font-size: 26px; line-height: 1; }
+.nav-btn.fab { width: 58px; height: 58px; min-width: 58px; flex: 0 0 58px; padding: 0; border-radius: 50%; margin-top: -28px; background: linear-gradient(145deg, var(--gold2), var(--gold)); color: #1a1405; border: 4px solid var(--bg); box-shadow: 0 6px 18px rgba(232,182,76,.4); display: flex; align-items: center; justify-content: center; gap: 0; }
+.nav-btn.fab .fab-plus { display: block; font-size: 36px; font-weight: 400; line-height: 1; transform: translateY(-1px); }
 
 #toasts { position: fixed; top: 14px; left: 14px; right: 14px; z-index: 100; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
 .toast { background: var(--card2); border: 1px solid var(--gold); color: var(--text); border-radius: 12px; padding: 11px 14px; font-size: 13.5px; box-shadow: 0 8px 24px rgba(0,0,0,.5); animation: slidein .25s; }
@@ -140,6 +140,9 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
 
 /* Chat */
 .chat-list{display:flex;flex-direction:column;gap:9px;min-height:260px;max-height:55vh;overflow:auto;padding:6px 2px 14px}.msg{max-width:84%;padding:10px 12px;border-radius:15px;background:var(--card);border:1px solid var(--line);align-self:flex-start}.msg.mine{align-self:flex-end;background:#29304d;border-color:#596383}.msg-head{font-size:11px;color:var(--gold2);margin-bottom:3px}.msg-time{font-size:10px;color:var(--muted);margin-top:5px}.msg-file{display:block;margin-top:7px;color:var(--gold2);text-decoration:none;background:var(--bg);padding:8px;border-radius:9px}.chat-compose{position:sticky;bottom:76px;background:var(--bg);padding:9px 0;display:grid;grid-template-columns:42px 1fr 54px;gap:7px}.chat-compose input[type=text]{min-width:0}.attach-btn,.send-btn{border:1px solid var(--line);border-radius:12px;background:var(--card2);color:var(--text);font-size:19px}.send-btn{background:var(--gold);color:#1a1405}.upload-note{font-size:11px;color:var(--muted);margin:3px 2px}.unread{display:none;background:var(--red);color:white;border-radius:99px;padding:1px 5px;font-size:9px;position:absolute;margin:-5px 0 0 11px}.unread.on{display:inline-block}.nav-btn{position:relative}
+
+/* Private document vault */
+.vault-open{margin-top:12px}.doc-grid{display:flex;flex-direction:column;gap:9px}.doc-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}.doc-top{display:flex;gap:10px;align-items:center}.doc-icon{font-size:27px}.doc-info{flex:1;min-width:0}.doc-title{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.doc-meta{font-size:11px;color:var(--muted)}.doc-actions{display:flex;gap:7px;margin-top:10px}.doc-actions button{flex:1;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:9px;padding:8px;font-size:12px}.doc-actions .share{color:var(--gold2)}.doc-actions .danger{color:var(--red)}.vault-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.back-btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:9px;padding:7px 11px}.security-note{font-size:11px;color:var(--muted);margin:8px 1px 12px}
 </style>
 </head>
 <body>
@@ -234,6 +237,7 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
         <input id="s-mypin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="••••">
         <button class="primary-btn" id="save-settings">💾 Save Settings</button>
       </div>
+      <button class="primary-btn vault-open" id="open-vault">🔐 Private Document Vault</button>
       <div class="card">
         <p class="hint" style="margin:0">
           📱 Open this same link on both phones and log in with your PIN.<br>
@@ -253,6 +257,18 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
         <button class="send-btn" id="send-msg" title="Send">➤</button>
         <input id="chat-file" type="file" hidden accept="image/jpeg,image/png,image/webp,image/gif,application/pdf,video/mp4,video/webm,video/quicktime,video/x-matroska">
       </div>
+
+    <section id="screen-documents" class="screen">
+      <div class="vault-head"><h3 class="sec-title" style="margin:0">🔐 Document Vault</h3><button class="back-btn" id="vault-back">← Back</button></div>
+      <div class="card form">
+        <label>Document ka naam</label><input id="doc-title" maxlength="100" placeholder="Jaise: Mera Aadhaar">
+        <label>Document type</label><select id="doc-type"><option value="aadhaar">Aadhaar Card</option><option value="pan">PAN Card</option><option value="passport">Passport</option><option value="licence">Driving Licence</option><option value="bank">Bank Document</option><option value="other">Other</option></select>
+        <label>Photo ya PDF (maximum 20 MB)</label><input id="doc-file" type="file" accept="image/jpeg,image/png,image/webp,application/pdf">
+        <button class="primary-btn" id="doc-upload">🔒 Private Upload</button>
+        <p class="security-note" id="doc-status">Upload ke baad sirf aap dekh sakte hain. Share dabane par partner ko access milega.</p>
+      </div>
+      <h3 class="sec-title">Aapke aur shared documents</h3><div id="doc-list" class="doc-grid"><div class="empty">Documents load ho rahe hain…</div></div>
+    </section>
     </section>
   </main>
 
@@ -359,7 +375,7 @@ function toast(msg, kind = 'info') {
 function show(screen) {
   $$('#app .screen').forEach(s => s.classList.remove('active'));
   $('#' + screen).classList.add('active');
-  const nav = { 'screen-home': 'home', 'screen-ledger': 'ledger', 'screen-settle': 'settle', 'screen-settings': 'settings', 'screen-chat': 'chat' }[screen];
+  const nav = { 'screen-home': 'home', 'screen-ledger': 'ledger', 'screen-settle': 'settle', 'screen-settings': 'settings', 'screen-chat': 'chat', 'screen-documents': 'documents' }[screen];
   $$('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.nav === nav));
   window.scrollTo(0, 0);
 }
@@ -618,6 +634,18 @@ setInterval(() => {
 }, 3000);
 
 
+
+/* ---------------- private document vault ---------------- */
+let documents=[];
+const docIcons={aadhaar:'🪪',pan:'💳',passport:'📘',licence:'🚘',bank:'🏦',other:'📄'};
+async function loadDocuments(){try{const x=await api('documents');documents=x.documents||[];renderDocuments()}catch(e){toast(e.message,'err')}}
+function renderDocuments(){const el=$('#doc-list');el.innerHTML=documents.length?documents.map(d=>`<div class="doc-card"><div class="doc-top"><div class="doc-icon">${docIcons[d.documentType]||'📄'}</div><div class="doc-info"><div class="doc-title">${esc(d.title)}</div><div class="doc-meta">${esc(d.fileName)} • ${bytes(d.fileSize)} • ${d.isOwner?(d.isShared?'Partner ke saath shared':'Private'):'Partner ne share kiya'}</div></div></div><div class="doc-actions"><button data-open="${d.id}">👁️ Open</button>${d.isOwner?`<button class="share" data-share="${d.id}">${d.isShared?'🔒 Revoke':'🤝 Share'}</button><button class="danger" data-delete="${d.id}">🗑️ Delete</button>`:''}</div></div>`).join(''):'<div class="empty">Abhi koi document nahi.</div>';
+$$('[data-open]').forEach(b=>b.onclick=async()=>{try{const x=await api('doc_url',{id:b.dataset.open});window.open(x.url,'_blank')}catch(e){toast(e.message,'err')}});
+$$('[data-share]').forEach(b=>b.onclick=async()=>{try{await api('doc_share',{id:b.dataset.share});await loadDocuments();toast('Document access update ho gaya','sync')}catch(e){toast(e.message,'err')}});
+$$('[data-delete]').forEach(b=>b.onclick=async()=>{if(!confirm('Document permanently delete karein?'))return;try{await api('doc_delete',{id:b.dataset.delete});await loadDocuments()}catch(e){toast(e.message,'err')}})}
+async function uploadDocument(){const title=$('#doc-title').value.trim(),f=$('#doc-file').files[0];if(!title||!f)return toast('Naam aur file dono chunein','err');if(f.size>20*1024*1024)return toast('File 20 MB se chhoti honi chahiye','err');const btn=$('#doc-upload');btn.disabled=true;$('#doc-status').textContent='Secure upload ho raha hai…';try{const s=await api('doc_upload_sign',{name:f.name,type:f.type,size:f.size});const c=window.supabase.createClient(SB_URL,SB_KEY);const up=await c.storage.from('private-documents').uploadToSignedUrl(s.path,s.token,f,{contentType:f.type});if(up.error)throw up.error;await api('doc_commit',{title,documentType:$('#doc-type').value,path:s.path,name:f.name,type:f.type,size:f.size});$('#doc-title').value='';$('#doc-file').value='';$('#doc-status').textContent='Upload complete — document private hai.';await loadDocuments()}catch(e){$('#doc-status').textContent='Upload fail hua.';toast(e.message,'err')}finally{btn.disabled=false}}
+$('#doc-upload').onclick=uploadDocument;$('#open-vault').onclick=()=>{show('screen-documents');loadDocuments()};$('#vault-back').onclick=()=>show('screen-settings');
+
 /* ---------------- partner chat + files ---------------- */
 let chatMessages = [], lastChatId = localStorage.getItem('sh_last_chat') || '', chatBusy = false;
 function chatOpen(){ return $('#screen-chat').classList.contains('active'); }
@@ -626,72 +654,4 @@ function renderChat(){
   const list=$('#chat-list');
   list.innerHTML=chatMessages.length?chatMessages.map(m=>{
     const mine=m.senderId===meId, p=partner(m.senderId), when=new Date(m.createdAt).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
-    const file=m.attachmentPath?`<a href="#" class="msg-file" data-file="${esc(m.id)}">📎 ${esc(m.attachmentName||'File')} ${m.attachmentSize?'('+bytes(m.attachmentSize)+')':''}</a>`:'';
-    return `<div class="msg ${mine?'mine':''}"><div class="msg-head">${esc(p?.name||'Partner')}</div>${m.body?`<div>${esc(m.body)}</div>`:''}${file}<div class="msg-time">${when}</div></div>`;
-  }).join(''):'<div class="empty">Abhi koi message nahi. Pehla message bhejein 👋</div>';
-  $$('.msg-file').forEach(a=>a.onclick=async e=>{e.preventDefault();try{const r=await api('file_url',{id:a.dataset.file});location.href=r.url}catch(x){toast(x.message,'err')}});
-  if(chatOpen()&&chatMessages.length){ lastChatId=chatMessages[chatMessages.length-1].id;localStorage.setItem('sh_last_chat',lastChatId);$('#chat-unread').classList.remove('on');setTimeout(()=>list.scrollTop=list.scrollHeight,30); }
-}
-async function loadChat(notify=true){
-  if(!token()||chatBusy)return; chatBusy=true;
-  try{const r=await api('messages');const old=chatMessages.length?chatMessages[chatMessages.length-1].id:'';chatMessages=r.messages||[];renderChat();
-    const newest=chatMessages.length?chatMessages[chatMessages.length-1]:null;
-    if(newest&&!chatOpen()&&newest.id!==old&&newest.id!==lastChatId&&newest.senderId!==meId){const b=$('#chat-unread');b.textContent='!';b.classList.add('on');if(notify)toast('💬 '+(partner(newest.senderId)?.name||'Partner')+': '+(newest.body||newest.attachmentName||'File'),'sync');}
-  }catch(e){} finally{chatBusy=false}
-}
-async function sendChat(){
-  const text=$('#chat-text').value.trim(), file=$('#chat-file').files[0];
-  if(!text&&!file)return toast('Message ya file chunein','err');
-  if(file&&file.size>100*1024*1024)return toast('File 100 MB se chhoti honi chahiye','err');
-  const btn=$('#send-msg');btn.disabled=true;
-  try{
-    let attachment=null;
-    if(file){$('#upload-note').textContent='Upload ho raha hai…';const s=await api('upload_sign',{name:file.name,type:file.type,size:file.size});const client=window.supabase.createClient(SB_URL,SB_KEY);const up=await client.storage.from('chat-files').uploadToSignedUrl(s.path,s.token,file,{contentType:file.type});if(up.error)throw up.error;attachment={path:s.path,name:file.name,type:file.type,size:file.size};}
-    await api('message_send',{body:text,attachment});$('#chat-text').value='';$('#chat-file').value='';$('#upload-note').textContent='Photo, PDF ya video — maximum 100 MB';await loadChat(false);
-  }catch(e){toast(e.message,'err');$('#upload-note').textContent='Upload fail — dobara try karein';}finally{btn.disabled=false}
-}
-$('#attach-btn').onclick=()=>$('#chat-file').click();
-$('#chat-file').onchange=()=>{$('#upload-note').textContent=$('#chat-file').files[0]?.name||'Photo, PDF ya video — maximum 100 MB'};
-$('#send-msg').onclick=sendChat;$('#chat-text').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendChat()}});
-setInterval(()=>{if(token())loadChat(true)},4000);
-
-/* ---------------- wiring ---------------- */
-buildPinPad();
-$$('#type-seg .seg-btn').forEach(b => b.onclick = () => {
-  curType = b.dataset.type;
-  $$('#type-seg .seg-btn').forEach(x => x.classList.toggle('active', x === b));
-  $('#f-paidby-label').textContent = curType === 'expense' ? 'Paid by' : 'Received by';
-});
-$('#save-txn').onclick = saveTxn;
-$$('.chip').forEach(c => c.onclick = () => {
-  curFilter = c.dataset.f;
-  $$('.chip').forEach(x => x.classList.toggle('active', x === c));
-  renderLedger();
-});
-$('#settle-btn').onclick = doSettle;
-$('#save-settings').onclick = saveSettings;
-$$('.nav-btn').forEach(b => b.onclick = () => show({ home: 'screen-home', ledger: 'screen-ledger', add: 'screen-add', settle: 'screen-settle', settings: 'screen-settings', chat: 'screen-chat' }[b.dataset.nav]));
-$('#logout-btn').onclick = () => { localStorage.removeItem('sh_token'); location.reload(); };
-
-/* if already logged in before, go straight in */
-if (token()) {
-  (async () => {
-    try {
-      const s = await api('state');
-      meId = s.myId;
-      applyState(s);
-      lastSync = Date.now();
-      setConn(true);
-      $('#app').classList.remove('hidden');
-      $('#screen-login').classList.remove('active');
-      show('screen-home');
-      fillAddForm();
-    } catch {
-      localStorage.removeItem('sh_token');
-    }
-  })();
-}
-</script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4113aa398ab0769',t:'MTc5MDQxNDgwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+    const file=m.attachmentPath?`<a href="#" 
