@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Jewelry Business — Partner Ledger</title>
+<title>Sajha Hisaab â Jewelry Business</title>
 <meta name="theme-color" content="#0f1220">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-512.png">
@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Jewelry Ledger">
+<meta name="apple-mobile-web-app-title" content="Sajha Hisaab">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -35,8 +35,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); }
 select { appearance: none; }
 .hidden { display: none !important; }
 
-#screen-login { min-height: 100dvh; padding: 24px; }
-#screen-login.active { display: flex; align-items: center; justify-content: center; }
+#screen-login { min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 24px; }
 .login-wrap { width: 100%; max-width: 340px; text-align: center; }
 .logo {
   width: 84px; height: 84px; margin: 0 auto 14px; border-radius: 26px;
@@ -137,28 +136,31 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
 .toast.err { border-color: var(--red); }
 .toast.sync { border-color: var(--green); }
 @keyframes slidein { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
+/* Chat */
+.chat-list{display:flex;flex-direction:column;gap:9px;min-height:260px;max-height:55vh;overflow:auto;padding:6px 2px 14px}.msg{max-width:84%;padding:10px 12px;border-radius:15px;background:var(--card);border:1px solid var(--line);align-self:flex-start}.msg.mine{align-self:flex-end;background:#29304d;border-color:#596383}.msg-head{font-size:11px;color:var(--gold2);margin-bottom:3px}.msg-time{font-size:10px;color:var(--muted);margin-top:5px}.msg-file{display:block;margin-top:7px;color:var(--gold2);text-decoration:none;background:var(--bg);padding:8px;border-radius:9px}.chat-compose{position:sticky;bottom:76px;background:var(--bg);padding:9px 0;display:grid;grid-template-columns:42px 1fr 54px;gap:7px}.chat-compose input[type=text]{min-width:0}.attach-btn,.send-btn{border:1px solid var(--line);border-radius:12px;background:var(--card2);color:var(--text);font-size:19px}.send-btn{background:var(--gold);color:#1a1405}.upload-note{font-size:11px;color:var(--muted);margin:3px 2px}.unread{display:none;background:var(--red);color:white;border-radius:99px;padding:1px 5px;font-size:9px;position:absolute;margin:-5px 0 0 11px}.unread.on{display:inline-block}.nav-btn{position:relative}
 </style>
 </head>
 <body>
 
 <section id="screen-login" class="screen active">
   <div class="login-wrap">
-    <div class="logo">💍</div>
-    <h1>Jewelry Business</h1>
-    <p class="sub">Sanskar &amp; Priyanshu • Partner Ledger</p>
+    <div class="logo">ð</div>
+    <h1>Sajha Hisaab</h1>
+    <p class="sub">Jewelry Business â¢ Partner Ledger</p>
     <div class="pin-dots" id="pin-dots">
       <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
     </div>
     <div class="pin-pad" id="pin-pad"></div>
-    <p class="hint">Tap the buttons below or type on your keyboard:<br><b>Sanskar</b> PIN <b>1111</b> • <b>Priyanshu</b> PIN <b>2222</b> (changeable in Settings)</p>
+    <p class="hint">Neeche wale <b>buttons dabayein</b> ya keyboard se type karein:<br>aapka PIN <b>1111</b> â¢ dost ka PIN <b>2222</b> (Settings me badal sakte hain)</p>
   </div>
 </section>
 
 <div id="app" class="hidden">
   <header class="topbar">
     <div class="topbar-left">
-      <h2 id="biz-name">Jewelry Business</h2>
-      <p class="conn offline" id="conn-status"><span>● connecting…</span></p>
+      <h2 id="biz-name">Sajha Hisaab</h2>
+      <p class="conn offline" id="conn-status"><span>â connect ho rahaâ¦</span></p>
     </div>
     <button class="ghost-btn" id="logout-btn">Logout</button>
   </header>
@@ -167,43 +169,43 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
     <section id="screen-home" class="screen">
       <div class="card due-card" id="due-card"></div>
       <div class="grid3">
-        <div class="card stat"><span class="stat-label">Total Income</span><span class="stat-val green" id="tot-income">₹0</span></div>
-        <div class="card stat"><span class="stat-label">Total Expense</span><span class="stat-val red" id="tot-expense">₹0</span></div>
-        <div class="card stat"><span class="stat-label">Profit</span><span class="stat-val gold" id="tot-profit">₹0</span></div>
+        <div class="card stat"><span class="stat-label">Total Kamai</span><span class="stat-val green" id="tot-income">â¹0</span></div>
+        <div class="card stat"><span class="stat-label">Total Kharcha</span><span class="stat-val red" id="tot-expense">â¹0</span></div>
+        <div class="card stat"><span class="stat-label">Profit</span><span class="stat-val gold" id="tot-profit">â¹0</span></div>
       </div>
-      <h3 class="sec-title">Recent Entries</h3>
+      <h3 class="sec-title">Haal ki Entries</h3>
       <div id="recent-list" class="txn-list"></div>
     </section>
 
     <section id="screen-add" class="screen">
-      <h3 class="sec-title">New Entry</h3>
+      <h3 class="sec-title">Nayi Entry</h3>
       <div class="seg" id="type-seg">
-        <button type="button" class="seg-btn active" data-type="expense">💸 Expense</button>
-        <button type="button" class="seg-btn" data-type="income">💰 Income</button>
+        <button type="button" class="seg-btn active" data-type="expense">ð¸ Kharcha</button>
+        <button type="button" class="seg-btn" data-type="income">ð° Kamai</button>
       </div>
       <div class="card form">
-        <label>Amount (₹)</label>
+        <label>Rashi (â¹)</label>
         <input id="f-amount" type="number" inputmode="decimal" min="1" step="0.01" placeholder="e.g. 200">
         <label>Category</label>
         <select id="f-category"></select>
-        <label id="f-paidby-label">Paid by</label>
+        <label>Kisko / kahan se? (jisne paisa diya ya liya)</label>
         <div class="seg" id="paidby-seg"></div>
         <label>Date</label>
         <input id="f-date" type="date">
-        <label>What was it? (title)</label>
-        <input id="f-title" type="text" maxlength="120" placeholder="e.g. bought domain, silver chain stock">
+        <label>Kya tha? (title)</label>
+        <input id="f-title" type="text" maxlength="120" placeholder="e.g. domain kharida, silver chain stock li">
         <label>Extra note (optional)</label>
-        <textarea id="f-note" rows="2" maxlength="300" placeholder="any extra details…"></textarea>
-        <button class="primary-btn" id="save-txn">💾 Save Entry</button>
+        <textarea id="f-note" rows="2" maxlength="300" placeholder="koi extra khabarâ¦"></textarea>
+        <button class="primary-btn" id="save-txn">ð¾ Entry Save Karein</button>
       </div>
     </section>
 
     <section id="screen-ledger" class="screen">
-      <h3 class="sec-title">Full Ledger</h3>
+      <h3 class="sec-title">Poora Hisaab</h3>
       <div class="chips" id="filter-chips">
-        <button class="chip active" data-f="all">All</button>
-        <button class="chip" data-f="expense">Expense</button>
-        <button class="chip" data-f="income">Income</button>
+        <button class="chip active" data-f="all">Sab</button>
+        <button class="chip" data-f="expense">Kharcha</button>
+        <button class="chip" data-f="income">Kamai</button>
         <button class="chip" data-f="settle">Settle</button>
       </div>
       <div id="ledger-list" class="txn-list"></div>
@@ -213,68 +215,83 @@ main { padding: 14px 14px 110px; max-width: 560px; margin: 0 auto; }
       <h3 class="sec-title">Settlement</h3>
       <div class="card" id="settle-summary"></div>
       <div class="card" id="settle-detail"></div>
-      <button class="primary-btn" id="settle-btn">⚖️ Mark as Settled</button>
-      <p class="hint" style="margin-top:14px">Marking as settled means the money has already been transferred. It will appear on both phones and the balance becomes even.</p>
+      <button class="primary-btn" id="settle-btn">âï¸ Settle Mark Karein</button>
+      <p class="hint" style="margin-top:14px">Settle karne ka matlab: paisa transfer ho chuka. Yeh entry dono phones par aayegi aur hisaab barabar ho jayega.</p>
     </section>
 
     <section id="screen-settings" class="screen">
       <h3 class="sec-title">Settings</h3>
       <div class="card form">
-        <label>Business name</label>
+        <label>Business ka naam</label>
         <input id="s-bizname" type="text" maxlength="60">
-        <label>Your name</label>
+        <label>Aapka naam</label>
         <input id="s-mename" type="text" maxlength="30">
-        <label>Your share (%)</label>
+        <label>Aapka hissa (%)</label>
         <input id="s-meshare" type="number" min="0" max="100" step="1">
         <p class="hint" id="s-other-share"></p>
-        <label>New PIN (4–8 digits — leave blank to keep the current one)</label>
-        <input id="s-mypin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="••••">
-        <button class="primary-btn" id="save-settings">💾 Save Settings</button>
+        <label>Aapka naya PIN (4â8 number, khaali chhode to wahi rahega)</label>
+        <input id="s-mypin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="â¢â¢â¢â¢">
+        <button class="primary-btn" id="save-settings">ð¾ Settings Save Karein</button>
       </div>
       <div class="card">
         <p class="hint" style="margin:0">
-          📱 Open this same link on both phones and log in with your PIN.<br>
-          📲 Any entry added by either of you shows up on the other phone within 1–2 seconds (live sync).<br>
-          🏠 Use "Add to Home Screen" to install it like an app.
+          ð± Dono phones par yahi cloud link kholein aur apni PIN se login karein.<br>
+          ð² Jo bhi entry koi daale, dusre phone par turant aayegi (Supabase live sync).<br>
+          ð  "Add to Home Screen" kar ke yeh app ki tarah install ho jayega.
         </p>
+      </div>
+    </section>
+
+    <section id="screen-chat" class="screen">
+      <h3 class="sec-title">Partner Chat</h3>
+      <div id="chat-list" class="chat-list"><div class="empty">Messages load ho rahe hainâ¦</div></div>
+      <div id="upload-note" class="upload-note">Photo, PDF ya video â maximum 100 MB</div>
+      <div class="chat-compose">
+        <button class="attach-btn" id="attach-btn" title="File attach karein">ð</button>
+        <input id="chat-text" type="text" maxlength="4000" placeholder="Message likheinâ¦">
+        <button class="send-btn" id="send-msg" title="Send">â¤</button>
+        <input id="chat-file" type="file" hidden accept="image/jpeg,image/png,image/webp,image/gif,application/pdf,video/mp4,video/webm,video/quicktime,video/x-matroska">
       </div>
     </section>
   </main>
 
   <nav class="bottom-nav">
-    <button class="nav-btn" data-nav="home">🏠<span>Home</span></button>
-    <button class="nav-btn" data-nav="ledger">📒<span>Ledger</span></button>
-    <button class="nav-btn fab" data-nav="add"><span class="fab-plus">＋</span></button>
-    <button class="nav-btn" data-nav="settle">⚖️<span>Settle</span></button>
-    <button class="nav-btn" data-nav="settings">⚙️<span>Settings</span></button>
+    <button class="nav-btn" data-nav="home">ð <span>Home</span></button>
+    <button class="nav-btn" data-nav="ledger">ð<span>Hisaab</span></button>
+    <button class="nav-btn fab" data-nav="add"><span class="fab-plus">ï¼</span></button>
+    <button class="nav-btn" data-nav="settle">âï¸<span>Settle</span></button>
+    <button class="nav-btn" data-nav="chat">ð¬<b id="chat-unread" class="unread">0</b><span>Chat</span></button>
+    <button class="nav-btn" data-nav="settings">âï¸<span>Settings</span></button>
   </nav>
 </div>
 
 <div id="toasts"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-/* API (Supabase Edge Function) */
+const SB_URL = "https://exlsnynbdmvmdcvectfh.supabase.co";
+const SB_KEY = "sb_publishable_YiAun8pgaxQNENmmOEa82Q_HljqX81Q";
 const API = "https://exlsnynbdmvmdcvectfh.supabase.co/functions/v1/app";
 
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 
 const CATS = [
-  ['Product / Stock', '💍'],
-  ['Domain / Website', '🌐'],
-  ['Meesho', '💻'],
-  ['Flipkart', '🛒'],
-  ['Packaging', '📦'],
-  ['Shipping / Courier', '🚚'],
-  ['Marketing / Ads', '📢'],
-  ['Platform Fee', '⚖️'],
-  ['Office / Misc', '🧾'],
-  ['Other', '💰'],
+  ['Product / Stock', 'ð'],
+  ['Domain / Website', 'ð'],
+  ['Meesho', 'ð»'],
+  ['Flipkart', 'ð'],
+  ['Packaging', 'ð¦'],
+  ['Shipping / Courier', 'ð'],
+  ['Marketing / Ads', 'ð¢'],
+  ['Platform Fee', 'âï¸'],
+  ['Office / Misc', 'ð§¾'],
+  ['Other', 'ð°'],
 ];
-const catIcon = c => (CATS.find(x => x[0] === c) || [c, '🧾'])[1];
+const catIcon = c => (CATS.find(x => x[0] === c) || [c, 'ð§¾'])[1];
 
 let state = null, meId = null;
-let lastSync = 0;
+let wsOk = false, lastSync = 0;
 let pinVal = '', curType = 'expense', curFilter = 'all';
 
 function token() { return localStorage.getItem('sh_token'); }
@@ -287,33 +304,6 @@ function fmtDate(d) {
 }
 function partner(id) { return state ? state.partners.find(p => p.id === id) : null; }
 
-/* translate server error messages (Hinglish -> English) */
-function trError(msg) {
-  const MAP = [
-    ["Galat PIN", "Wrong PIN, please try again"],
-    ["PIN 4-8 numbers ka hona chahiye", "PIN must be 4-8 digits"],
-    ["Login zaroori hai", "Login required"],
-    ["Session expire ho gayi", "Session expired, please log in again"],
-    ["Sahi rashi / category / partner chunein", "Please enter a valid amount, category and partner"],
-    ["Balance already barabar hai", "Balance is already even"],
-    ["Entry save nahi hui", "Entry could not be saved"],
-    ["Delete nahi hua", "Delete failed"],
-    ["Settle nahi hua", "Settlement failed"],
-    ["Naam save nahi hua", "Could not save the name"],
-    ["Settings save nahi hui", "Could not save settings"],
-    ["PIN change nahi hua", "PIN could not be changed"],
-    ["Ye PIN kisi aur partner ka already hai", "This PIN is already used by the other partner"],
-  ];
-  if (!msg) return "Something went wrong";
-  for (const [h, e] of MAP) {
-    if (msg.startsWith(h)) {
-      const rest = msg.slice(h.length).replace(/^[:\s]+/, "").trim();
-      return rest ? e + " — " + rest : e;
-    }
-  }
-  return msg;
-}
-
 async function api(action, body) {
   const res = await fetch(API + '?action=' + action, {
     method: body ? 'POST' : 'GET',
@@ -325,7 +315,7 @@ async function api(action, body) {
   });
   let j = {};
   try { j = await res.json(); } catch {}
-  if (!res.ok) throw new Error(trError(j.error) || 'Request failed (' + res.status + ')');
+  if (!res.ok) throw new Error(j.error || 'Kuch galat ho gaya (' + res.status + ')');
   return j;
 }
 
@@ -340,7 +330,7 @@ function toast(msg, kind = 'info') {
 function show(screen) {
   $$('#app .screen').forEach(s => s.classList.remove('active'));
   $('#' + screen).classList.add('active');
-  const nav = { 'screen-home': 'home', 'screen-ledger': 'ledger', 'screen-settle': 'settle', 'screen-settings': 'settings' }[screen];
+  const nav = { 'screen-home': 'home', 'screen-ledger': 'ledger', 'screen-settle': 'settle', 'screen-settings': 'settings', 'screen-chat': 'chat' }[screen];
   $$('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.nav === nav));
   window.scrollTo(0, 0);
 }
@@ -348,7 +338,7 @@ function show(screen) {
 function setConn(on) {
   const el = $('#conn-status');
   el.className = 'conn ' + (on ? 'online' : 'offline');
-  el.innerHTML = on ? '<span>● Live — connected with partner</span>' : '<span>● Offline — retrying…</span>';
+  el.innerHTML = on ? '<span>â Live â partner se connected</span>' : '<span>â Offline â dobara try ho raha hai</span>';
 }
 
 /* ---------------- login / PIN pad ---------------- */
@@ -356,7 +346,7 @@ function buildPinPad() {
   const pad = $('#pin-pad');
   for (const k of ['1','2','3','4','5','6','7','8','9','0','del']) {
     const b = document.createElement('button');
-    b.textContent = k === 'del' ? '⌫' : k;
+    b.textContent = k === 'del' ? 'â«' : k;
     if (k === 'del') b.className = 'del';
     b.onclick = () => {
       if (k === 'del') pinVal = pinVal.slice(0, -1);
@@ -410,6 +400,7 @@ async function refresh() {
     setConn(true);
   } catch (e) {
     setConn(false);
+    if (meId && token()) { /* silent, next poll retry karega */ }
   }
 }
 
@@ -423,8 +414,8 @@ function applyState(s) {
     const t = state.transactions[0];
     if (t && t.createdBy && t.createdBy !== meId) {
       const who = partner(t.createdBy)?.name || 'Partner';
-      const kind = t.type === 'income' ? 'income 💰' : t.type === 'settle' ? 'settlement ⚖️' : 'expense 💸';
-      toast(`📲 ${who}: ${kind} ${fmt(t.amount)} — ${t.title || t.category}`, 'sync');
+      const kind = t.type === 'income' ? 'kamai ð°' : t.type === 'settle' ? 'settlement âï¸' : 'kharcha ð¸';
+      toast(`ð² ${who}: ${kind} ${fmt(t.amount)} â ${t.title || t.category}`, 'sync');
     }
   }
 }
@@ -436,15 +427,15 @@ function renderHome() {
   const other = state.partners.find(p => p.id !== meId);
   const card = $('#due-card');
   if (Math.abs(bal) < 0.005) {
-    card.innerHTML = '<div class="ok">🎉 All Clear</div><div class="small">No balance due — nothing to pay or receive</div>';
+    card.innerHTML = '<div class="ok">ð Sab Hisaab Barabar Hai</div><div class="small">Abhi koi paisa dene-lene ka nahi</div>';
   } else if (bal < 0) {
-    card.innerHTML = `<div class="who">You need to pay ${other?.name || 'partner'}</div>
+    card.innerHTML = `<div class="who">${other?.name || 'Partner'} ko aapko dena hai</div>
       <div class="amt pay">${fmt(-bal)}</div>
-      <div class="small">live syncs on both phones</div>`;
+      <div class="small">dono phones par live update hota hai</div>`;
   } else {
-    card.innerHTML = `<div class="who">You will receive from ${other?.name || 'partner'}</div>
+    card.innerHTML = `<div class="who">${other?.name || 'Partner'} se aapko milega</div>
       <div class="amt get">${fmt(bal)}</div>
-      <div class="small">live syncs on both phones</div>`;
+      <div class="small">dono phones par live update hota hai</div>`;
   }
   let inc = 0, exp = 0;
   for (const t of state.transactions) {
@@ -456,34 +447,34 @@ function renderHome() {
   $('#tot-profit').textContent = fmt(inc - exp);
   $('#recent-list').innerHTML = state.transactions.length
     ? state.transactions.slice(0, 5).map(txnHtml).join('')
-    : '<div class="empty">No entries yet. Tap ＋ below to add your first entry 🚀</div>';
+    : '<div class="empty">Abhi koi entry nahi. Neeche ï¼ dabakar pehli entry daalein ð</div>';
   bindDel();
 }
 
 function txnHtml(t) {
   const who = partner(t.paidBy)?.name || '?';
   const me = t.paidBy === meId;
-  const icon = t.type === 'settle' ? '⚖️' : catIcon(t.category);
-  const sign = t.type === 'income' ? '+' : t.type === 'settle' ? '' : '−';
+  const icon = t.type === 'settle' ? 'âï¸' : catIcon(t.category);
+  const sign = t.type === 'income' ? '+' : t.type === 'settle' ? '' : 'â';
   const cls = t.type === 'income' ? 'green' : t.type === 'settle' ? 'gold' : 'red';
   const title = t.title ? t.title : t.category;
-  const sub = `${who}${me ? ' (you)' : ''} • ${fmtDate(t.date)}${t.note ? ' • ' + t.note : ''}`;
+  const sub = `${who}${me ? ' (aap)' : ''} â¢ ${fmtDate(t.date)}${t.note ? ' â¢ ' + t.note : ''}`;
   return `<div class="txn" data-id="${t.id}">
     <div class="ic">${icon}</div>
     <div class="body"><div class="t1">${esc(title)}</div><div class="t2">${esc(sub)}</div></div>
     <div class="amt ${cls}">${sign}${fmt(t.amount)}</div>
-    <button class="del" title="delete">✕</button>
+    <button class="del" title="delete">â</button>
   </div>`;
 }
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 function bindDel() {
   $$('.txn .del').forEach(b => b.onclick = async () => {
     const id = b.closest('.txn').dataset.id;
-    if (!confirm('Delete this entry? It will be removed from both phones.')) return;
+    if (!confirm('Yeh entry delete karein? (dono phones se hat jayegi)')) return;
     try {
       await api('txn_delete', { id });
       await refresh();
-      toast('Entry deleted');
+      toast('Entry delete ho gayi');
     } catch (e) { toast(e.message, 'err'); }
   });
 }
@@ -491,7 +482,7 @@ function bindDel() {
 function renderLedger() {
   if (!state) return;
   const list = state.transactions.filter(t => curFilter === 'all' ? true : t.type === curFilter);
-  $('#ledger-list').innerHTML = list.length ? list.map(txnHtml).join('') : '<div class="empty">No entries in this filter</div>';
+  $('#ledger-list').innerHTML = list.length ? list.map(txnHtml).join('') : '<div class="empty">Is filter me koi entry nahi</div>';
   bindDel();
 }
 
@@ -501,23 +492,23 @@ function renderSettle() {
   const rows = state.partners.map(p => {
     const v = b[p.id] || 0;
     const cls = Math.abs(v) < 0.005 ? '' : v > 0 ? 'green' : 'red';
-    const txt = Math.abs(v) < 0.005 ? 'Even ✓' : (v > 0 ? `+ ${fmt(v)} to receive` : `− ${fmt(-v)} to pay`);
-    return `<div class="row"><span class="nm">${esc(p.name)}${p.id === meId ? ' (you)' : ''} • ${p.share}% share</span><span class="${cls}">${txt}</span></div>`;
+    const txt = Math.abs(v) < 0.005 ? 'Barabar â' : (v > 0 ? `+ ${fmt(v)} milega` : `â ${fmt(-v)} dena hai`);
+    return `<div class="row"><span class="nm">${esc(p.name)}${p.id === meId ? ' (aap)' : ''} â¢ ${p.share}% hissa</span><span class="${cls}">${txt}</span></div>`;
   }).join('');
   $('#settle-detail').innerHTML = rows;
   const me = b[meId] || 0;
   const other = state.partners.find(p => p.id !== meId);
   const sum = $('#settle-summary'), btn = $('#settle-btn');
   if (Math.abs(me) < 0.005) {
-    sum.innerHTML = '<div class="ok" style="font-size:24px;color:var(--gold2)">🎉 All Settled Up</div><div class="hint" style="margin-top:6px">No settlement needed right now</div>';
+    sum.innerHTML = '<div class="ok" style="font-size:24px;color:var(--gold2)">ð Sab Balance Hai</div><div class="hint" style="margin-top:6px">Abhi koi settlement zaroori nahi</div>';
     btn.disabled = true; btn.style.opacity = .45;
   } else {
     btn.disabled = false; btn.style.opacity = 1;
     if (me < 0) {
-      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">You need to pay ${esc(other?.name || 'partner')}</div>
+      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">${esc(other?.name || 'Partner')} ko aapko dena hai</div>
         <div class="amt pay" style="font-size:30px;font-weight:800;color:var(--red)">${fmt(-me)}</div>`;
     } else {
-      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">You will receive from ${esc(other?.name || 'partner')}</div>
+      sum.innerHTML = `<div class="who" style="color:var(--muted);font-size:14px">${esc(other?.name || 'Partner')} se aapko milega</div>
         <div class="amt get" style="font-size:30px;font-weight:800;color:var(--green)">${fmt(me)}</div>`;
     }
   }
@@ -531,7 +522,7 @@ function renderSettings() {
   if ($('#s-bizname').value !== state.businessName) $('#s-bizname').value = state.businessName;
   if ($('#s-mename').value !== me.name) $('#s-mename').value = me.name;
   if (String($('#s-meshare').value) !== String(me.share)) $('#s-meshare').value = me.share;
-  $('#s-other-share').textContent = `${other?.name || 'Other partner'}: ${other?.share}% share (auto-adjusted)`;
+  $('#s-other-share').textContent = `${other?.name || 'Dusra partner'}: ${other?.share}% hissa (auto adjust hota hai)`;
   $('#s-mypin').value = '';
 }
 
@@ -541,7 +532,7 @@ function fillAddForm() {
   sel.innerHTML = CATS.map(c => `<option value="${c[0]}">${c[1]} ${c[0]}</option>`).join('');
   const seg = $('#paidby-seg');
   seg.innerHTML = state.partners.map(p =>
-    `<button type="button" class="seg-btn ${p.id === meId ? 'active' : ''}" data-id="${p.id}">${esc(p.name)}${p.id === meId ? ' (you)' : ''}</button>`
+    `<button type="button" class="seg-btn ${p.id === meId ? 'active' : ''}" data-id="${p.id}">${esc(p.name)}${p.id === meId ? ' (aap)' : ''}</button>`
   ).join('');
   $$('#paidby-seg .seg-btn').forEach(b => b.onclick = () => {
     $$('#paidby-seg .seg-btn').forEach(x => x.classList.remove('active'));
@@ -554,7 +545,7 @@ function fillAddForm() {
 async function saveTxn() {
   const amount = parseFloat($('#f-amount').value);
   const paidBy = $('#paidby-seg .seg-btn.active')?.dataset.id || meId;
-  if (!(amount > 0)) { toast('Enter a valid amount', 'err'); return; }
+  if (!(amount > 0)) { toast('Sahi rashi daalein', 'err'); return; }
   try {
     await api('txn_add', {
       type: curType, amount,
@@ -564,18 +555,18 @@ async function saveTxn() {
       note: $('#f-note').value.trim(),
     });
     $('#f-amount').value = ''; $('#f-title').value = ''; $('#f-note').value = '';
-    toast('✓ Entry saved — sent to partner\'s phone 📲');
+    toast('â Entry save hui â partner ke phone par bhi chali gayi ð²');
     show('screen-home');
     await refresh();
   } catch (e) { toast(e.message, 'err'); }
 }
 
 async function doSettle() {
-  if (!confirm('Mark as settled? (means the money has already been transferred)')) return;
+  if (!confirm('Settlement mark karein? (matlab paisa transfer ho chuka)')) return;
   try {
     await api('settle', {});
     await refresh();
-    toast('⚖️ Settlement complete — balances are even!');
+    toast('âï¸ Settlement complete â hisaab barabar!');
   } catch (e) { toast(e.message, 'err'); }
 }
 
@@ -587,23 +578,76 @@ async function saveSettings() {
       partners: [{ id: meId, name: $('#s-mename').value.trim(), share, newPin: $('#s-mypin').value.trim() }],
     });
     await refresh();
-    toast('✓ Settings saved');
+    toast('â Settings save ho gayi');
   } catch (e) { toast(e.message, 'err'); }
 }
 
-/* ---------------- live sync: check for new data every 3 seconds ---------------- */
+/* ---------------- live sync: Supabase Realtime + polling fallback ---------------- */
+function initRealtime() {
+  try {
+    if (!window.supabase) return; // CDN fail ho bhi to polling chalega
+    const sb = window.supabase.createClient(SB_URL, SB_KEY);
+    sb.channel('ledger-sync')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'transactions' }, () => {
+        if (document.visibilityState === 'visible') refresh();
+      })
+      .subscribe(st => {
+        wsOk = (st === 'SUBSCRIBED');
+        if (wsOk) setConn(true);
+      });
+  } catch {}
+}
+// Polling: sirf jab realtime connect na ho (ya 60s se naya data na aaya ho)
 setInterval(() => {
   const appOpen = !$('#app').classList.contains('hidden');
   if (!token() || !appOpen) return;
-  if (Date.now() - lastSync > 2500) refresh();
-}, 3000);
+  const stale = Date.now() - lastSync;
+  if ((!wsOk && stale > 4500) || (wsOk && stale > 60000)) refresh();
+}, 5000);
+
+
+/* ---------------- partner chat + files ---------------- */
+let chatMessages = [], lastChatId = localStorage.getItem('sh_last_chat') || '', chatBusy = false;
+function chatOpen(){ return $('#screen-chat').classList.contains('active'); }
+function bytes(n){ if(!n)return ''; const u=['B','KB','MB','GB']; let i=0; while(n>=1024&&i<3){n/=1024;i++} return n.toFixed(i?1:0)+' '+u[i]; }
+function renderChat(){
+  const list=$('#chat-list');
+  list.innerHTML=chatMessages.length?chatMessages.map(m=>{
+    const mine=m.senderId===meId, p=partner(m.senderId), when=new Date(m.createdAt).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+    const file=m.attachmentPath?`<a href="#" class="msg-file" data-file="${esc(m.id)}">ð ${esc(m.attachmentName||'File')} ${m.attachmentSize?'('+bytes(m.attachmentSize)+')':''}</a>`:'';
+    return `<div class="msg ${mine?'mine':''}"><div class="msg-head">${esc(p?.name||'Partner')}</div>${m.body?`<div>${esc(m.body)}</div>`:''}${file}<div class="msg-time">${when}</div></div>`;
+  }).join(''):'<div class="empty">Abhi koi message nahi. Pehla message bhejein ð</div>';
+  $$('.msg-file').forEach(a=>a.onclick=async e=>{e.preventDefault();try{const r=await api('file_url',{id:a.dataset.file});location.href=r.url}catch(x){toast(x.message,'err')}});
+  if(chatOpen()&&chatMessages.length){ lastChatId=chatMessages[chatMessages.length-1].id;localStorage.setItem('sh_last_chat',lastChatId);$('#chat-unread').classList.remove('on');setTimeout(()=>list.scrollTop=list.scrollHeight,30); }
+}
+async function loadChat(notify=true){
+  if(!token()||chatBusy)return; chatBusy=true;
+  try{const r=await api('messages');const old=chatMessages.length?chatMessages[chatMessages.length-1].id:'';chatMessages=r.messages||[];renderChat();
+    const newest=chatMessages.length?chatMessages[chatMessages.length-1]:null;
+    if(newest&&!chatOpen()&&newest.id!==old&&newest.id!==lastChatId&&newest.senderId!==meId){const b=$('#chat-unread');b.textContent='!';b.classList.add('on');if(notify)toast('ð¬ '+(partner(newest.senderId)?.name||'Partner')+': '+(newest.body||newest.attachmentName||'File'),'sync');}
+  }catch(e){} finally{chatBusy=false}
+}
+async function sendChat(){
+  const text=$('#chat-text').value.trim(), file=$('#chat-file').files[0];
+  if(!text&&!file)return toast('Message ya file chunein','err');
+  if(file&&file.size>100*1024*1024)return toast('File 100 MB se chhoti honi chahiye','err');
+  const btn=$('#send-msg');btn.disabled=true;
+  try{
+    let attachment=null;
+    if(file){$('#upload-note').textContent='Upload ho raha haiâ¦';const s=await api('upload_sign',{name:file.name,type:file.type,size:file.size});const client=window.supabase.createClient(SB_URL,SB_KEY);const up=await client.storage.from('chat-files').uploadToSignedUrl(s.path,s.token,file,{contentType:file.type});if(up.error)throw up.error;attachment={path:s.path,name:file.name,type:file.type,size:file.size};}
+    await api('message_send',{body:text,attachment});$('#chat-text').value='';$('#chat-file').value='';$('#upload-note').textContent='Photo, PDF ya video â maximum 100 MB';await loadChat(false);
+  }catch(e){toast(e.message,'err');$('#upload-note').textContent='Upload fail â dobara try karein';}finally{btn.disabled=false}
+}
+$('#attach-btn').onclick=()=>$('#chat-file').click();
+$('#chat-file').onchange=()=>{$('#upload-note').textContent=$('#chat-file').files[0]?.name||'Photo, PDF ya video â maximum 100 MB'};
+$('#send-msg').onclick=sendChat;$('#chat-text').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendChat()}});
+setInterval(()=>{if(token())loadChat(true)},4000);
 
 /* ---------------- wiring ---------------- */
 buildPinPad();
 $$('#type-seg .seg-btn').forEach(b => b.onclick = () => {
   curType = b.dataset.type;
   $$('#type-seg .seg-btn').forEach(x => x.classList.toggle('active', x === b));
-  $('#f-paidby-label').textContent = curType === 'expense' ? 'Paid by' : 'Received by';
 });
 $('#save-txn').onclick = saveTxn;
 $$('.chip').forEach(c => c.onclick = () => {
@@ -613,10 +657,10 @@ $$('.chip').forEach(c => c.onclick = () => {
 });
 $('#settle-btn').onclick = doSettle;
 $('#save-settings').onclick = saveSettings;
-$$('.nav-btn').forEach(b => b.onclick = () => show({ home: 'screen-home', ledger: 'screen-ledger', add: 'screen-add', settle: 'screen-settle', settings: 'screen-settings' }[b.dataset.nav]));
+$$('.nav-btn').forEach(b => b.onclick = () => show({ home: 'screen-home', ledger: 'screen-ledger', add: 'screen-add', settle: 'screen-settle', settings: 'screen-settings', chat: 'screen-chat' }[b.dataset.nav]));
 $('#logout-btn').onclick = () => { localStorage.removeItem('sh_token'); location.reload(); };
 
-/* if already logged in before, go straight in */
+/* pehle se login hai toh seedha andar */
 if (token()) {
   (async () => {
     try {
@@ -629,11 +673,15 @@ if (token()) {
       $('#screen-login').classList.remove('active');
       show('screen-home');
       fillAddForm();
+      initRealtime(); loadChat(false);
     } catch {
       localStorage.removeItem('sh_token');
     }
   })();
+} else {
+  initRealtime(); loadChat(false);
 }
 </script>
-</body>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4112d4cf92a0d14',t:'MTc5MDQxNDI2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
